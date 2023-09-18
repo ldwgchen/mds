@@ -60,23 +60,23 @@ func serveMarkdown(w http.ResponseWriter, abs string) {
   d := frontmatter.Get(ctx)
   if d != nil {
     var meta struct {
-      title string
-      keywords []string
+      Title string
+      Keywords []string
     }
     if err := d.Decode(&meta); err != nil {
       log.Println("problem decoding frontmatter")
     }
-    if meta.title != "" {
-      prependix.WriteString(`<h1 id="title">` + meta.title + "</h1>\n")
+    if meta.Title != "" {
+      prependix.WriteString(`<h1 id="title">` + meta.Title + "</h1>\n")
     }
-    if len(meta.keywords) > 1 {
-      prependix.WriteString("<p><strong>Keywords:</strong> " + meta.keywords[0])
-      for i := 1; i < len(meta.keywords); i++ {
-        prependix.WriteString("<strong>;</strong> " + meta.keywords[i])
+    if len(meta.Keywords) > 1 {
+      prependix.WriteString("<p><strong>Keywords:</strong> " + meta.Keywords[0])
+      for i := 1; i < len(meta.Keywords); i++ {
+        prependix.WriteString("<strong>;</strong> " + meta.Keywords[i])
       }
       prependix.WriteString("</p>\n")
-    } else if len(meta.keywords) == 1 {
-      prependix.WriteString("<p><strong>Keywords:</strong> " + meta.keywords[0] + "</p>\n")
+    } else if len(meta.Keywords) == 1 {
+      prependix.WriteString("<p><strong>Keywords:</strong> " + meta.Keywords[0] + "</p>\n")
     }
   }
 
