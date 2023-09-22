@@ -8,9 +8,10 @@ import (
 	"strings"
 )
 
-func serveDir(w http.ResponseWriter, abs string, urlPath string) {
+func serveDir(w http.ResponseWriter, r *http.Request, abs string) {
+	urlPath := r.URL.Path
 	if !strings.HasSuffix(urlPath, "/") {
-		urlPath += "/"
+		http.Redirect(w, r, urlPath+"/", 301)
 	}
 	w.Header().Add("Content-Type", "text/html")
 
