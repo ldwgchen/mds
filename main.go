@@ -71,17 +71,17 @@ func handleFile(w http.ResponseWriter, r *http.Request) {
 	}
 
 	if fileInfo.IsDir() {
+		log.Println("calling serveDir for", abs)
 		serveDir(w, r, abs)
-		log.Println("served directory", abs)
 		return
 	}
 
 	if filepath.Ext(abs) == ".md" {
+		log.Println("calling serveMarkdown for", abs)
 		serveMarkdown(w, abs)
-		log.Println("served markdown", abs)
 		return
 	}
 
 	http.ServeFile(w, r, abs)
-	log.Println("served file", abs)
+	log.Println("calling http.ServeFile for", abs)
 }
