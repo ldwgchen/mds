@@ -1,9 +1,9 @@
 module mds
 
-go 1.21.0
+go 1.21.4
 
 require (
-	github.com/yuin/goldmark v1.5.6
+	github.com/yuin/goldmark v1.6.0
 	go.abhg.dev/goldmark/frontmatter v0.1.0
 	go.abhg.dev/goldmark/wikilink v0.5.0
 )

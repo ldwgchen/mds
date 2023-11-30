@@ -12,6 +12,7 @@ func serveDir(w http.ResponseWriter, r *http.Request, abs string) {
 	urlPath := r.URL.Path
 	if !strings.HasSuffix(urlPath, "/") {
 		http.Redirect(w, r, urlPath+"/", 301)
+		return
 	}
 	w.Header().Add("Content-Type", "text/html")
 
@@ -24,6 +25,9 @@ func serveDir(w http.ResponseWriter, r *http.Request, abs string) {
 
 	b.WriteString("<div class=\"entries\">")
 	for _, dirEntry := range dirEntries {
+		if strings.HasPrefix(dirEntry.Name(), ".") {
+			continue
+		}
 		var optional string
 		if dirEntry.IsDir() {
 			optional = "/"
@@ -32,9 +36,11 @@ func serveDir(w http.ResponseWriter, r *http.Request, abs string) {
 		strings.ReplaceAll(name, "\n", "")
 		b.WriteString("<a href=\"" + urlPath + name + "\">" + name + "</a><br>")
 	}
-	b.WriteString("</div>")
+	b.WriteString("</div>\n")
 
 	w.Write(c.header)
+	w.Write([]byte("<body>\n"))
 	b.WriteTo(w)
 	w.Write(c.footer)
+	w.Write([]byte("</body>\n"))
 }
