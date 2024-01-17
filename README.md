@@ -1,4 +1,4 @@
-# mds
+<h1 align="center">mds</h1>
 
 *mds* is a simple markdown server for my personal use only.
 
