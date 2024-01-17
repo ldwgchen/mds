@@ -1,5 +1,14 @@
 # mds
 
+## Usage
+
+In the desired directory for serving, run:
+```shell
+nix run github:ldwgchen/mds
+```
+
+## For developers
+
 In the same directory as *flake.nix*, build the default package specified in the flake:
 ```shell
 nix build
