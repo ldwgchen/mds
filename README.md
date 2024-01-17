@@ -1,5 +1,7 @@
 # mds
 
+*mds* is a simple markdown server for my personal use only.
+
 ## Usage
 
 In the desired directory for serving, run:
